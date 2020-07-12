@@ -5,15 +5,25 @@ function myAutoloader($className){
     include 'classes/' . $className . '.php';
 }
 
-//The first example was stupid, so I did my quick, short example. My class is doing only one thing.
+//Single Responsibility Principle
+//... this example was stupid, so I did my quick, short example. My class is doing only one thing.
 $logger = new Logger();
 $logger->createLog('First log.');
 $logger->createLog('Second log.');
 
 //Open/closed principle
-//(let slave classes work for master classes) :)
+//(let slave classes (instruments) work for master class (musician))
+
+$musician = new Musician();
+$guitar = new Guitar();
+$piano = new Piano();
+$saxophone = new Saxophone();
+$musician->playInstrument($guitar);
+$musician->playInstrument($piano);
+$musician->playInstrument($saxophone);
 
 
+//
 
 
 
