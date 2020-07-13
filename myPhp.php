@@ -51,7 +51,7 @@ Class B extends A {
 
 //4-Interface Segregation: Don’t make FAT Interfaces. i.e. Classes don’t have to override extra agreements that are not needed for that Class simply because it is there in interface. Make a lot of small, simple interfaces, instead of one big monstrum interface.
 
-/*
+
 interface IPrinter
 {
   public function print(Document $d);
@@ -79,15 +79,41 @@ class AdvancePrinter implements IPrinter,IScanner,IXerox
     echo "Take xerox copy of document";
   }
 }
-class SimplePrinter implements IPrinter
+class SimplePrinter implements IPrinter{
   public function print(Document $d){
     echo "Print document";
   }
 }
-*/
+
 
 
 //5-Dependency Inversion: Depend on abstractions, not on concretions. Not only high level Classes but low level Classes also depend on the abstractions in order to decouple the code.
+/*
+Dependency inversion is not = to Dependency Injection!!!
+
+
+
+*/
+
+interface ConnectionInterface {
+  public function connect();
+}
+
+class DbConnection implements ConnectionInterface {
+  public function connect(){
+    //connect to db code goes here
+  }
+}
+
+class PasswordReminder {
+
+  private $dbConnection;
+
+  public function __construct(ConnectionInterface $dbConnection){//Very simply put: use the ConnectionInterface  in your class's constructor, and do not use OtherClass DbConnection in the constuctor..
+    $this->dbConnection = dbConnection;
+  }
+}
+
 
 
 
